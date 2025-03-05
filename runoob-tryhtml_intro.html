@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐！李雪芝</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff6f61;
+            font-size: 3em;
+            margin-top: 20%;
+            animation: float 3s ease-in-out infinite;
+        }
+        p {
+            font-size: 1.5em;
+            color: #333;
+            animation: fadeIn 2s ease-in;
+        }
+        .balloon {
+            position: absolute;
+            font-size: 2em;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6f61;
+            border-radius: 50%;
+            animation: explode 1s ease-out infinite;
+        }
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="birthdayMessage">🎉🎂 生日快乐，李雪芝！🎂🎉</h1>
+    <p id="ageMessage">祝你 <strong>25</strong> 岁生日快乐！</p>
+    <p>愿你的每一天都充满快乐和惊喜！</p>
+    <p>愿你梦想成真，健康平安！</p>
+    <p class="balloon">🎁🎈🎊 祝你度过一个美好的一天！🎊🎈🎁</p>
+
+    <!-- 动态烟花效果 -->
+    <div id="fireworks"></div>
+
+    <script>
+        // 动态生成烟花
+        function createFirework() {
+            const firework = document.createElement("div");
+            firework.className = "firework";
+            firework.style.left = `${Math.random() * 100}vw`;
+            firework.style.top = `${Math.random() * 100}vh`;
+            firework.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
+            document.getElementById("fireworks").appendChild(firework);
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+
+        // 持续生成烟花
+        setInterval(createFirework, 300);
+
+        // 动态显示祝福语
+        const messages = [
+            "🎉 祝你天天开心！",
+            "🎂 愿你梦想成真！",
+            "🎁 健康平安，幸福常伴！",
+            "🎈 愿你永远年轻美丽！"
+        ];
+        let index = 0;
+        setInterval(() => {
+            document.getElementById("ageMessage").innerHTML = messages[index];
+            index = (index + 1) % messages.length;
+        }, 3000);
+    </script>
+</body>
+</html>
